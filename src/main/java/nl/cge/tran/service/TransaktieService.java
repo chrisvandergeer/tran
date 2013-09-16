@@ -4,10 +4,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.cge.tran.RaboTransaktieFile;
-import nl.cge.tran.RaboTransaktieFileloader;
-import nl.cge.tran.SearchCriteria;
-import nl.cge.tran.Transaktie;
+import nl.cge.tran.domein.Transaktie;
+import nl.cge.tran.domein.helper.RaboTransaktieFile;
+import nl.cge.tran.domein.helper.RaboTransaktieFileloader;
+import nl.cge.tran.web.ui.oldhomepage.SearchCriteria;
 
 public enum TransaktieService {
 	

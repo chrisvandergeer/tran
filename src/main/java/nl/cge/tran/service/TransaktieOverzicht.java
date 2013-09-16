@@ -1,6 +1,6 @@
 package nl.cge.tran.service;
 
-import nl.cge.tran.Transaktie;
+import nl.cge.tran.domein.Transaktie;
 
 import java.util.List;
 

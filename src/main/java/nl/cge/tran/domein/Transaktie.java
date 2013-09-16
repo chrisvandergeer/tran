@@ -1,10 +1,13 @@
-package nl.cge.tran;
+package nl.cge.tran.domein;
 
 
 import java.io.Serializable;
 import java.util.Date;
 
+import nl.cge.tran.web.ui.oldhomepage.SearchCriteria;
+
 public class Transaktie implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private String rekeningnummer;
 	private Date datum;
@@ -15,6 +18,7 @@ public class Transaktie implements Serializable {
 	private String omschrijving2;
 	private String omschrijving3;
 	private String omschrijving4;
+	
 	public String getRekeningnummer() {
 		return rekeningnummer;
 	}

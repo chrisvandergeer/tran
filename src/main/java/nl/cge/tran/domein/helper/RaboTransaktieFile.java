@@ -1,10 +1,12 @@
-package nl.cge.tran;
+package nl.cge.tran.domein.helper;
 
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import nl.cge.tran.domein.Transaktie;
 
 public class RaboTransaktieFile {
 	

@@ -1,4 +1,4 @@
-package nl.cge.tran;
+package nl.cge.tran.web.ui.oldhomepage;
 
 import java.io.Serializable;
 
@@ -10,8 +10,9 @@ import java.io.Serializable;
  * To change this template use File | Settings | File Templates.
  */
 public class SearchCriteria implements Serializable {
-
-    private String text;
+	private static final long serialVersionUID = 1L;
+	
+	private String text;
 
     public String getText() {
         return text;

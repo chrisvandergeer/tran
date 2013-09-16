@@ -1,7 +1,7 @@
 package nl.cge;
 
-import nl.cge.tran.HomePage;
-import nl.cge.tran.WicketApplication;
+import nl.cge.tran.web.ui.oldhomepage.HomePage;
+import nl.cge.tran.web.wicket.WicketApplication;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;

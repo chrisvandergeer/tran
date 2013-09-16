@@ -1,4 +1,6 @@
-package nl.cge.tran;
+package nl.cge.tran.web.wicket;
+
+import nl.cge.tran.web.ui.oldhomepage.HomePage;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
