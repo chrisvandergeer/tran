@@ -1,6 +1,7 @@
 package nl.cge.tran.web.wicket;
 
-import nl.cge.tran.web.ui.oldhomepage.HomePage;
+
+import nl.cge.tran.web.ui.homepage.Transaktiepage;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -18,7 +19,7 @@ public class WicketApplication extends WebApplication
 	@Override
 	public Class<? extends WebPage> getHomePage()
 	{
-		return HomePage.class;
+		return Transaktiepage.class;
 	}
 
 	/**

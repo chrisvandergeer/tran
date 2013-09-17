@@ -1,4 +1,4 @@
-package nl.cge.tran.web.ui.oldhomepage;
+package nl.cge.tran.web.ui.homepage;
 
 import java.io.Serializable;
 

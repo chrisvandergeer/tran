@@ -1,4 +1,4 @@
-package nl.cge.tran.web.ui.oldhomepage;
+package nl.cge.tran.web.ui.homepage;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Button;
