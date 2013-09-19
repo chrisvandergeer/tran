@@ -3,6 +3,9 @@ package nl.cge.tran.web.ui.homepage;
 import java.util.List;
 
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
@@ -18,9 +21,17 @@ public class Transaktiepage extends BootstrapPage {
 	public Transaktiepage(PageParameters parameters) {
 		super(parameters);
 		add(new SearchForm("searchForm"));
+		add(tagForm("tagForm"));
 		PageableListView<Transaktie> listView = createTransaktieListView("transakties");
 		add(new PagingNavigator("pager", listView));
 		add(listView);
+	}
+
+	private Form<Void> tagForm(String id) {
+		Form<Void> form = new Form<Void>(id);
+		form.add(new TextField<String>("tag"));
+		form.add(new Button("opslaanBtn"));
+		return form;
 	}
 	
 	private PageableListView<Transaktie> createTransaktieListView(final String id) {
