@@ -14,14 +14,14 @@
         	<div class="row">
         		<div class="span4">
 		        	 <form wicket:id="searchForm" class="form-search">
-		                <input wicket:id="text" type="text" class="input-medium search-query">
+		                <input placeholder="zoekterm" wicket:id="text" type="text" class="input-medium search-query">
 		                <button wicket:id="searchBtn" type="submit" class="btn btn btn-primary">Search</button>
 		            </form>
 	            </div>
 	        
-	        	<div class="span4">
+	        	<div class="span4" style="float: right">
 	            	<form wicket:id="tagForm" class="form-search">
-	            		<input wicket:id="tag" type="text" class="input-medium search-query">
+	            		<input placeholder="tag" wicket:id="tag" type="text" class="input-medium search-query">
 	            		<button wicket:id="opslaanBtn" type="submit" class="btn btn btn-warning">Opslaan</button>
 	            	</form>
 	            </div>
@@ -49,6 +49,7 @@
                         	<div wicket:id="omschrijving3" />
                         	<div wicket:id="omschrijving4" />
                         </td>
+                        <td style="font-size: smaller" wicket:id="tags"></td>
                     </tr>
                 </tbody>
 			</table>			

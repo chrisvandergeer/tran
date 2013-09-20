@@ -3,6 +3,8 @@ package nl.cge.tran.domein;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import nl.cge.tran.web.ui.homepage.SearchCriteria;
 
@@ -20,6 +22,7 @@ public class Transaktie implements Serializable {
 	private String omschrijving2;
 	private String omschrijving3;
 	private String omschrijving4;
+	private Set<String> tags;
 	
 	public Integer getId() {
 		return id;
@@ -81,13 +84,47 @@ public class Transaktie implements Serializable {
 	public void setOmschrijving4(String omschrijving4) {
 		this.omschrijving4 = omschrijving4;
 	}
-
-    public boolean isMatch(SearchCriteria crit) {
+    public Set<String> getTags() {
+    	if (tags == null) {
+    		tags = new HashSet<String>();
+    	}
+		return tags;
+	}
+	public void setTags(Set<String> tags) {
+		this.tags = tags;
+	}
+	
+	public String getTagsStringPresentation() {
+		StringBuilder builder = new StringBuilder();
+		for (String tag : getTags()) {
+			builder.append(tag).append(", ");
+		}
+		String result = builder.toString();
+		return result.endsWith(", ") ? result.substring(0, result.length() - 2) : "";
+	}
+	
+	public boolean isMatch(SearchCriteria crit) {
         if (crit.hasText()) {
-            StringBuilder builder = new StringBuilder(getTegenrekeningnaam()).append(getOmschrijving1())
-                    .append(getOmschrijving2()).append(getOmschrijving3()).append(getOmschrijving4());
-            return builder.toString().toUpperCase().contains(crit.getText().toUpperCase().trim());
+            StringBuilder builder = new StringBuilder(getTegenrekeningnaam()).append(getOmschrijving1());
+            builder.append(getOmschrijving2()).append(getOmschrijving3()).append(getOmschrijving4());
+            String concat = builder.toString().toUpperCase();
+            for (String str : crit.getText().split(" ")) {           	
+            	if (str.startsWith("l:")) {
+            		if (!getTags().contains(str.replace("l:", ""))) {
+            			return false;
+            		}
+            	} else {
+            		if (!concat.contains(str.toUpperCase())) {
+            			return false;
+            		}
+            	}
+            }
+            return true;
         }
         return true;
     }
+	
+	public void addTag(String tag) {
+		getTags().add(tag);
+	}
 }

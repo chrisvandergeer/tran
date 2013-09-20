@@ -35,4 +35,12 @@ public enum TransaktieService {
         }
         return result;
     }
+
+	public void saveAll(List<Transaktie> transakties, String tag) {
+		for (Transaktie transaktie : transakties) {
+			transaktie.addTag(tag);
+			dao.save(transaktie);
+		}
+		dao.commit();
+	}
 }
