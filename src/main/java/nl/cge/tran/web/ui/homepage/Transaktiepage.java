@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import nl.cge.tran.domein.Transaktie;
@@ -17,20 +18,27 @@ import nl.cge.tran.web.wicket.ui.BootstrapPage;
 
 public class Transaktiepage extends BootstrapPage {
 	private static final long serialVersionUID = 1L;
+	private PageableListView<Transaktie> listView;
 	
 	public Transaktiepage(PageParameters parameters) {
 		super(parameters);
 		add(new SearchForm("searchForm"));
 		add(tagForm("tagForm"));
-		PageableListView<Transaktie> listView = createTransaktieListView("transakties");
+		listView = createTransaktieListView("transakties");
 		add(new PagingNavigator("pager", listView));
 		add(listView);
 	}
 
 	private Form<Void> tagForm(String id) {
 		Form<Void> form = new Form<Void>(id);
-		form.add(new TextField<String>("tag"));
-		form.add(new Button("opslaanBtn"));
+		final TextField<String> tag = new TextField<String>("tag", Model.of(""));
+		form.add(tag);
+		form.add(new Button("opslaanBtn") {
+			@Override
+			public void onSubmit() {
+				TransaktieService.Instance.saveAll(listView.getModelObject(), tag.getModelObject());
+			}
+		});
 		return form;
 	}
 	
@@ -48,6 +56,7 @@ public class Transaktiepage extends BootstrapPage {
                 item.add(new Label("omschrijving2", transaktie.getOmschrijving2()));
                 item.add(new Label("omschrijving3", transaktie.getOmschrijving3()));
                 item.add(new Label("omschrijving4", transaktie.getOmschrijving4()));
+                item.add(new Label("tags", transaktie.getTagsStringPresentation()));
             }
         };
     } 
@@ -56,7 +65,6 @@ public class Transaktiepage extends BootstrapPage {
     protected void onBeforeRender() {
         SearchCriteria crit = ((SearchForm) get("searchForm")).getModelObject();
         List<Transaktie> transakties = TransaktieService.Instance.findAll(crit);
-        PageableListView<Transaktie> listView = (PageableListView<Transaktie>) get("transakties");
         listView.setDefaultModelObject(transakties);
         super.onBeforeRender();
     }

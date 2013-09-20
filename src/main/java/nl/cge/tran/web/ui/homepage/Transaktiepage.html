@@ -14,14 +14,14 @@
         	<div class="row">
         		<div class="span4">
 		        	 <form wicket:id="searchForm" class="form-search">
-		                <input wicket:id="text" type="text" class="input-medium search-query">
+		                <input placeholder="zoekterm" wicket:id="text" type="text" class="input-medium search-query">
 		                <button wicket:id="searchBtn" type="submit" class="btn btn btn-primary">Search</button>
 		            </form>
 	            </div>
 	        
-	        	<div class="span4">
+	        	<div class="span4" style="float: right">
 	            	<form wicket:id="tagForm" class="form-search">
-	            		<input wicket:id="tag" type="text" class="input-medium search-query">
+	            		<input placeholder="tag" wicket:id="tag" type="text" class="input-medium search-query">
 	            		<button wicket:id="opslaanBtn" type="submit" class="btn btn btn-warning">Opslaan</button>
 	            	</form>
 	            </div>
@@ -36,19 +36,21 @@
                         <th>Tegenrekening</th>
                         <th>Bedrag</th>
                         <th>Omschrijving</th>
+                        <th>Tags</th>
                     </tr>
                 </thead>
                 <tbody class="">
                     <tr wicket:id="transakties">
-                        <td wicket:id="datum"></td>
+                        <td style="width: 10%" wicket:id="datum"></td>
                         <td wicket:id="tegenrekeningnaam"></td>
                         <td wicket:id="bedrag" class="amount"></td>
                         <td>
                         	<div wicket:id="omschrijving1" />
-                        	<div wicket:id="omschrijving2" />
-                        	<div wicket:id="omschrijving3" />
-                        	<div wicket:id="omschrijving4" />
+                        	<span style="font-size: x-small" wicket:id="omschrijving2" />
+                        	<span style="font-size: x-small" wicket:id="omschrijving3" />
+                        	<span style="font-size: x-small"  wicket:id="omschrijving4" />
                         </td>
+                        <td style="font-size: x-small" wicket:id="tags"></td>
                     </tr>
                 </tbody>
 			</table>			
