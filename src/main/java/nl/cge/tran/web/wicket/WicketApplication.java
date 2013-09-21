@@ -11,14 +11,12 @@ import org.apache.wicket.protocol.http.WebApplication;
  * 
  * @see nl.cge.tran.Start#main(String[])
  */
-public class WicketApplication extends WebApplication
-{    	
+public class WicketApplication extends WebApplication {    	
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
 	@Override
-	public Class<? extends WebPage> getHomePage()
-	{
+	public Class<? extends WebPage> getHomePage() {
 		return Transaktiepage.class;
 	}
 
@@ -26,10 +24,11 @@ public class WicketApplication extends WebApplication
 	 * @see org.apache.wicket.Application#init()
 	 */
 	@Override
-	public void init()
-	{
+	public void init() {
 		super.init();
-
-		// add your configuration here
 	}
+	
+	
+	
+	
 }
