@@ -14,6 +14,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import nl.cge.tran.domein.Transaktie;
 import nl.cge.tran.service.TransaktieService;
+import nl.cge.tran.web.wicket.labels.Currencylabel;
 import nl.cge.tran.web.wicket.ui.BootstrapPage;
 
 public class Transaktiepage extends BootstrapPage {
@@ -34,6 +35,7 @@ public class Transaktiepage extends BootstrapPage {
 		final TextField<String> tag = new TextField<String>("tag", Model.of(""));
 		form.add(tag);
 		form.add(new Button("opslaanBtn") {
+			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
 				TransaktieService.Instance.saveAll(listView.getModelObject(), tag.getModelObject());
@@ -51,7 +53,7 @@ public class Transaktiepage extends BootstrapPage {
                 Transaktie transaktie = item.getModelObject();
                 item.add(new Label("datum", transaktie.getDatum()));
                 item.add(new Label("tegenrekeningnaam", transaktie.getTegenrekening() + " " + transaktie.getTegenrekeningnaam()));
-                item.add(new Label("bedrag", transaktie.getBedrag()));
+                item.add(new Currencylabel("bedrag", transaktie.getBedrag()));
                 item.add(new Label("omschrijving1", transaktie.getOmschrijving1()));
                 item.add(new Label("omschrijving2", transaktie.getOmschrijving2()));
                 item.add(new Label("omschrijving3", transaktie.getOmschrijving3()));
