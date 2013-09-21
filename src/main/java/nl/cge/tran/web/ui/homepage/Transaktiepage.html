@@ -43,14 +43,18 @@
                     <tr wicket:id="transakties">
                         <td style="width: 12%" wicket:id="datum"></td>
                         <td wicket:id="tegenrekeningnaam"></td>
-                        <td wicket:id="bedrag" class="amount"></td>
+                        <td style="width: 10%" wicket:id="bedrag" class="amount"></td>
                         <td>
                         	<div wicket:id="omschrijving1" />
                         	<span style="font-size: x-small" wicket:id="omschrijving2" />
                         	<span style="font-size: x-small" wicket:id="omschrijving3" />
                         	<span style="font-size: x-small"  wicket:id="omschrijving4" />
                         </td>
-                        <td style="font-size: x-small" wicket:id="tags"></td>
+                        <td style="width: 18%; font-size: x-small">
+                        	<span wicket:id="tags">
+                        		<span class="btn btn-mini btn-info" style="margin-top: 3px;" wicket:id="tagname"></span>
+                        	</span>
+                        </td>
                     </tr>
                 </tbody>
 			</table>			

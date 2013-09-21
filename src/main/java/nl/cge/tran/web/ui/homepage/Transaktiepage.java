@@ -1,5 +1,6 @@
 package nl.cge.tran.web.ui.homepage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.wicket.markup.html.basic.Label;
@@ -7,6 +8,7 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.model.Model;
@@ -49,9 +51,8 @@ public class Transaktiepage extends BootstrapPage {
         List<Transaktie> transakties = TransaktieService.Instance.findAll();
         return new PageableListView<Transaktie>(id, transakties, 25) {
 			private static final long serialVersionUID = 1L;
-
 			protected void populateItem(ListItem<Transaktie> item) {
-                Transaktie transaktie = item.getModelObject();
+                final Transaktie transaktie = item.getModelObject();
                 item.add(new Datelabel("datum", transaktie.getDatum()));
                 item.add(new Label("tegenrekeningnaam", transaktie.getTegenrekening() + " " + transaktie.getTegenrekeningnaam()));
                 item.add(new Currencylabel("bedrag", transaktie.getBedrag()));
@@ -59,7 +60,14 @@ public class Transaktiepage extends BootstrapPage {
                 item.add(new Label("omschrijving2", transaktie.getOmschrijving2()));
                 item.add(new Label("omschrijving3", transaktie.getOmschrijving3()));
                 item.add(new Label("omschrijving4", transaktie.getOmschrijving4()));
-                item.add(new Label("tags", transaktie.getTagsStringPresentation()));
+                ListView<String> taglist = new ListView<String>("tags", new ArrayList<String>(transaktie.getTags())) {
+                	private static final long serialVersionUID = 1L;	
+					@Override
+					protected void populateItem(ListItem<String> item) {
+						item.add(new Label("tagname", item.getModelObject()));
+					}                	
+                };
+                item.add(taglist);
             }
         };
     } 
