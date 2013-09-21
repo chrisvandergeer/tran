@@ -1,8 +1,10 @@
 package nl.cge.tran.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import nl.cge.tran.domein.DatumaflopendComparator;
 import nl.cge.tran.domein.Transaktie;
 import nl.cge.tran.persistence.TransaktieDao;
 import nl.cge.tran.web.ui.homepage.SearchCriteria;
@@ -10,6 +12,8 @@ import nl.cge.tran.web.ui.homepage.SearchCriteria;
 public enum TransaktieService {
 	
 	Instance;
+	
+	private DatumaflopendComparator datumaflopendComparator = new DatumaflopendComparator();
 	
 	private TransaktieDao dao = TransaktieDao.Instance;
 	
@@ -24,6 +28,7 @@ public enum TransaktieService {
 	}
 
     public List<Transaktie> findAll(SearchCriteria crit) {
+    	Collections.sort(cached, datumaflopendComparator);
     	if (!crit.hasText()) {
     		return new ArrayList<Transaktie>(cached);
     	}
@@ -32,7 +37,7 @@ public enum TransaktieService {
             if (t.isMatch(crit)) {
                 result.add(t);
             }
-        }
+        }        
         return result;
     }
 
