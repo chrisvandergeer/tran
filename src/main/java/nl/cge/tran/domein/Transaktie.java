@@ -113,6 +113,13 @@ public class Transaktie implements Serializable {
             		if (!getTags().contains(str.replace("l:", ""))) {
             			return false;
             		}
+            	} else if (str.startsWith(">")) {
+            		Integer meerDan = Integer.valueOf(str.replace(">", ""));
+            		return bedrag > meerDan;
+            	} else if (str.startsWith("<")) {
+            		Integer minderDan = Integer.valueOf(str.replace("<", ""));
+            		System.out.println(minderDan);
+            		return bedrag < minderDan;
             	} else {
             		if (!concat.contains(str.toUpperCase())) {
             			return false;

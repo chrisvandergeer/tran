@@ -11,10 +11,13 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import nl.cge.tran.domein.Transaktie;
+import nl.cge.tran.service.TotalCalculator;
 import nl.cge.tran.service.TransaktieService;
 import nl.cge.tran.web.wicket.labels.Currencylabel;
 import nl.cge.tran.web.wicket.labels.Datelabel;
@@ -23,14 +26,19 @@ import nl.cge.tran.web.wicket.ui.BootstrapPage;
 public class Transaktiepage extends BootstrapPage {
 	private static final long serialVersionUID = 1L;
 	private PageableListView<Transaktie> listView;
+	private TotalCalculator totalen = new TotalCalculator();
 	
 	public Transaktiepage(PageParameters parameters) {
 		super(parameters);
+		List<Transaktie> transakties = TransaktieService.Instance.findAll();
 		add(new SearchForm("searchForm"));
-		add(tagForm("tagForm"));
+		add(tagForm("tagForm"));		
 		listView = createTransaktieListView("transakties");
 		add(new PagingNavigator("pager", listView));
-		add(listView);
+		add(listView);		
+		add(new Currencylabel("totaal", new PropertyModel<TotalCalculator>(totalen, "totaal")));
+		add(new Currencylabel("totaalPositief", new PropertyModel<TotalCalculator>(totalen, "totaalPositief")));
+		add(new Currencylabel("totaalNegatief", new PropertyModel<TotalCalculator>(totalen, "totaalNegatief")));
 	}
 
 	private Form<Void> tagForm(String id) {
@@ -48,8 +56,7 @@ public class Transaktiepage extends BootstrapPage {
 	}
 	
 	private PageableListView<Transaktie> createTransaktieListView(final String id) {
-        List<Transaktie> transakties = TransaktieService.Instance.findAll();
-        return new PageableListView<Transaktie>(id, transakties, 25) {
+        return new PageableListView<Transaktie>(id, new ArrayList<Transaktie>(), 25) {
 			private static final long serialVersionUID = 1L;
 			protected void populateItem(ListItem<Transaktie> item) {
                 final Transaktie transaktie = item.getModelObject();
@@ -77,6 +84,7 @@ public class Transaktiepage extends BootstrapPage {
         SearchCriteria crit = ((SearchForm) get("searchForm")).getModelObject();
         List<Transaktie> transakties = TransaktieService.Instance.findAll(crit);
         listView.setDefaultModelObject(transakties);
+        totalen.reCalculate(transakties);
         super.onBeforeRender();
     }
 	

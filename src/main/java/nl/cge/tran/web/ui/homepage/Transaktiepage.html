@@ -12,13 +12,13 @@
 		</div>
         <div class="container">
         	<div class="row">
-        		<div class="span4">
+        		<div class="span8">
 		        	 <form wicket:id="searchForm" class="form-search">
 		                <input placeholder="zoekterm" wicket:id="text" type="text" class="input-medium search-query">
 		                <button wicket:id="searchBtn" type="submit" class="btn btn btn-primary">Search</button>
 		            </form>
 	            </div>
-	        
+       
 	        	<div class="span4" style="float: right">
 	            	<form wicket:id="tagForm" class="form-search">
 	            		<input placeholder="tag" wicket:id="tag" type="text" class="input-medium search-query">
@@ -27,6 +27,15 @@
 	            </div>
         	</div>           
         </div>
+        
+        <div class="container">
+        	<div class="row">
+			    	<div class="span2 alert alert-info" wicket:id="totaal" />
+			       	<div class="span2 alert alert-success" wicket:id="totaalPositief" />
+			       	<div class="span2 alert alert-error" wicket:id="totaalNegatief" />
+				</div>
+			</div> 
+        
 		<div class="container">
 			<div wicket:id="pager" />
 			<table class="table table-bordered table-striped">

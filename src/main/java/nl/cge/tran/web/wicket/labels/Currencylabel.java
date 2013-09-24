@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.convert.IConverter;
 import org.apache.wicket.util.convert.converter.DoubleConverter;
 
@@ -13,6 +14,10 @@ public class Currencylabel extends Label {
 	
 	public Currencylabel(String id, Double value) {
 		super(id, new Model<Double>(value));
+	}
+	
+	public Currencylabel(String id, PropertyModel<?> value) {
+		super(id, value);
 	}
 	
 	@Override
