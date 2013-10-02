@@ -1,8 +1,8 @@
 package nl.cge.tran.service;
 
-import nl.cge.tran.domein.Transaktie;
-
 import java.util.List;
+
+import nl.cge.tran.domein.Transaktie;
 
 /**
  * Created with IntelliJ IDEA.

@@ -3,6 +3,13 @@ package nl.cge.tran.web.ui.homepage;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.cge.tran.domein.Transaktie;
+import nl.cge.tran.service.TotalCalculator;
+import nl.cge.tran.service.TransaktieService;
+import nl.cge.tran.web.wicket.labels.Currencylabel;
+import nl.cge.tran.web.wicket.labels.Datelabel;
+import nl.cge.tran.web.wicket.ui.BootstrapPage;
+
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -11,17 +18,9 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-
-import nl.cge.tran.domein.Transaktie;
-import nl.cge.tran.service.TotalCalculator;
-import nl.cge.tran.service.TransaktieService;
-import nl.cge.tran.web.wicket.labels.Currencylabel;
-import nl.cge.tran.web.wicket.labels.Datelabel;
-import nl.cge.tran.web.wicket.ui.BootstrapPage;
 
 public class Transaktiepage extends BootstrapPage {
 	private static final long serialVersionUID = 1L;
@@ -82,7 +81,7 @@ public class Transaktiepage extends BootstrapPage {
 	@Override
     protected void onBeforeRender() {
         SearchCriteria crit = ((SearchForm) get("searchForm")).getModelObject();
-        List<Transaktie> transakties = TransaktieService.Instance.findAll(crit);
+        List<Transaktie> transakties = TransaktieService.Instance.findTransakties(crit);
         listView.setDefaultModelObject(transakties);
         totalen.reCalculate(transakties);
         super.onBeforeRender();

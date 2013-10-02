@@ -107,7 +107,9 @@ public class Transaktie implements Serializable {
         if (crit.hasText()) {
             StringBuilder builder = new StringBuilder(getTegenrekeningnaam()).append(getOmschrijving1());
             builder.append(getOmschrijving2()).append(getOmschrijving3()).append(getOmschrijving4());
-            String concat = builder.toString().toUpperCase();
+            String concat = builder.toString().toUpperCase();        
+            
+            
             for (String str : crit.getText().split(" ")) {           	
             	if (str.startsWith("l:")) {
             		if (!getTags().contains(str.replace("l:", ""))) {
