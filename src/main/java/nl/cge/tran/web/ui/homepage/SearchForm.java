@@ -1,6 +1,7 @@
 package nl.cge.tran.web.ui.homepage;
 
 import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 
@@ -11,7 +12,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
  * Time: 20:11
  * To change this template use File | Settings | File Templates.
  */
-public class SearchForm extends org.apache.wicket.markup.html.form.Form<SearchCriteria> {
+public class SearchForm extends Form<SearchCriteria> {
 	private static final long serialVersionUID = 1L;
 
 	public SearchForm(String id) {

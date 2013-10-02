@@ -2,15 +2,13 @@ package nl.cge.tran.persistence;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import nl.cge.tran.domein.ApplicationException;
-import nl.cge.tran.domein.Transaktie;
 import jdbm.PrimaryTreeMap;
 import jdbm.RecordManager;
 import jdbm.RecordManagerFactory;
+import nl.cge.tran.domein.ApplicationException;
+import nl.cge.tran.domein.Transaktie;
 
 public enum TransaktieDao {
 	
