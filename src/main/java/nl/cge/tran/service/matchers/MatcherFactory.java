@@ -9,7 +9,7 @@ public class MatcherFactory {
 	
 	public static Matcher[] MATCHERS = new Matcher[] {
 		new LabelMatcher(), new BedragGroterDanMatcher(), new BedragKleinerDanMatcher(), 
-		new FieldMatcher() 
+		new MaandMatcher(),	new FieldMatcher() 
 	};
 	
 	public static List<Matcher> create(SearchCriteria criteria) {
