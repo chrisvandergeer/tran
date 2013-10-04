@@ -3,10 +3,13 @@ package nl.cge.tran.service.matchers;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.Data;
+
 import org.joda.time.LocalDate;
 
 import nl.cge.tran.domein.Transaktie;
 
+@Data
 public class MaandMatcher implements Matcher {
 	
 	private final static Map<String, Integer> MAANDEN = new HashMap<String, Integer>();

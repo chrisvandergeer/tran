@@ -1,9 +1,12 @@
 package nl.cge.tran.service.matchers;
 
+import lombok.Data;
+
 import org.joda.time.LocalDate;
 
 import nl.cge.tran.domein.Transaktie;
 
+@Data
 public class JaarMatcher implements Matcher {
 	
 	private Periode periode;

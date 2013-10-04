@@ -1,5 +1,8 @@
 package nl.cge.tran.service.matchers;
 
+import lombok.Data;
+
+@Data
 public class Periode {
 	
 	private Integer van;
