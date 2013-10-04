@@ -18,10 +18,10 @@ public class Periode {
 		this.tot = tot;
 	}
 	public boolean isValid() {
-		return van != null && tot != null;
+		return van != null && tot != null && van <= tot;
 	}
-	public boolean valtBinnen(int maand) {
-		return maand >= van && maand <= tot;
+	public boolean valtBinnen(int moment) {
+		return moment >= van && moment <= tot;
 	}
 	
 
