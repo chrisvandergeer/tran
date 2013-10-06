@@ -6,10 +6,6 @@ import nl.cge.tran.domein.Transaktie;
 import nl.cge.tran.service.TransaktieService;
 import nl.cge.tran.web.wicket.ui.BootstrapPage;
 
-import org.apache.wicket.markup.html.form.Button;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class Transaktiepage extends BootstrapPage {
@@ -20,30 +16,27 @@ public class Transaktiepage extends BootstrapPage {
 	
 	public Transaktiepage(PageParameters parameters) {
 		super(parameters);
-		searchformPanel = new SearchformPanel("search");
-		add(searchformPanel);
-//		add(tagForm("tagForm"));
-		transaktielijstPanel = new TransaktielijstPanel("transactiepanel");
-		add(transaktielijstPanel);		
+		add(searchformPanel("search"));
+		add(transaktielijstPanel("transactiepanel"));
 		add(new TagformPanel("tagformpanel", transaktielijstPanel));
-		totalenPanel = new TotalenPanel("totalen");
-		add(totalenPanel);
+		add(totalenPanel("totalen"));
 	}
 
-//	private Form<Void> tagForm(String id) {
-//		Form<Void> form = new Form<Void>(id);
-//		final TextField<String> tag = new TextField<String>("tag", Model.of(""));
-//		form.add(tag);
-//		form.add(new Button("opslaanBtn") {
-//			private static final long serialVersionUID = 1L;
-//			@Override
-//			public void onSubmit() {
-//				TransaktieService.Instance.saveAll(transaktielijstPanel.getTransaktielijst().getModelObject(), tag.getModelObject());
-//			}
-//		});
-//		return form;
-//	}
-//	
+	private TotalenPanel totalenPanel(String id) {
+		totalenPanel = new TotalenPanel(id);
+		return totalenPanel;
+	}
+
+	private TransaktielijstPanel transaktielijstPanel(String id) {
+		transaktielijstPanel = new TransaktielijstPanel(id);
+		return transaktielijstPanel;
+	}
+
+	private SearchformPanel searchformPanel(String id) {
+		searchformPanel = new SearchformPanel(id);
+		return searchformPanel;
+	}
+
 	@Override
     protected void onBeforeRender() {
 		SearchCriteria crit = searchformPanel.getSearchCriteriaModel().getObject();
