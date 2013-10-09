@@ -136,4 +136,8 @@ public class Transaktie implements Serializable {
 	public void addTag(String tag) {
 		getTags().add(tag);
 	}
+	
+	public void removeTag(String tag) {
+		getTags().remove(tag);
+	}
 }

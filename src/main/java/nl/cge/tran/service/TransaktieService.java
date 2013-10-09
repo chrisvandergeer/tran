@@ -52,9 +52,18 @@ public enum TransaktieService {
 	}
 
 	public void saveAll(List<Transaktie> transakties, String tag) {
-		for (Transaktie transaktie : transakties) {
-			transaktie.addTag(tag);
-			dao.save(transaktie);
+		if (tag == null) return;
+		
+		if (tag.startsWith("-")) {
+			for (Transaktie transaktie : transakties) {
+				transaktie.removeTag(tag.replace("-", ""));
+				dao.save(transaktie);
+			}
+		} else {
+			for (Transaktie transaktie : transakties) {
+				transaktie.addTag(tag);
+				dao.save(transaktie);
+			}
 		}
 		dao.commit();
 	}
