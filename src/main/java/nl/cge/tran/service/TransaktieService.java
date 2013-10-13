@@ -31,6 +31,7 @@ public enum TransaktieService {
 	public List<Transaktie> findTransakties(SearchCriteria criteria) {
 		List<Transaktie> result = new ArrayList<Transaktie>();
 		if (!criteria.hasText()) {
+			result.addAll(cached);
 			return result;
 		}
 		List<Matcher> matchers = MatcherFactory.create(criteria);
@@ -51,16 +52,16 @@ public enum TransaktieService {
 		return true;
 	}
 
-	public void saveAll(List<Transaktie> transakties, String tag) {
+	public void saveAll(List<? extends Transaktie> list, String tag) {
 		if (tag == null) return;
 		
 		if (tag.startsWith("-")) {
-			for (Transaktie transaktie : transakties) {
+			for (Transaktie transaktie : list) {
 				transaktie.removeTag(tag.replace("-", ""));
 				dao.save(transaktie);
 			}
 		} else {
-			for (Transaktie transaktie : transakties) {
+			for (Transaktie transaktie : list) {
 				transaktie.addTag(tag);
 				dao.save(transaktie);
 			}

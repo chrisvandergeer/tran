@@ -2,6 +2,7 @@ package nl.cge.tran.web.wicket.ui;
 
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.JavaScriptReferenceHeaderItem;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
@@ -16,5 +17,6 @@ public class BootstrapPage extends WebPage {
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
         response.render(CssHeaderItem.forReference(BootstrapCss.BOOTSTRAP));
+        response.render(JavaScriptReferenceHeaderItem.forReference(Chartjs.CHARTJS));
     }
 }

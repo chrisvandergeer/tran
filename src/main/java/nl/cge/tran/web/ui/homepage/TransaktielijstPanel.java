@@ -1,6 +1,7 @@
 package nl.cge.tran.web.ui.homepage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import nl.cge.tran.domein.Transaktie;
 import nl.cge.tran.web.wicket.labels.Currencylabel;
@@ -12,15 +13,25 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
 
 public class TransaktielijstPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 	
 	private PageableListView<Transaktie> transaktielijst;
 
-	public TransaktielijstPanel(String id) {
+	private IModel<List<? extends Transaktie>> transakties;
+
+	public TransaktielijstPanel(String id, IModel<List<? extends Transaktie>> transakties) {
 		super(id);
-		transaktielijst = new PageableListView<Transaktie>("transakties", new ArrayList<Transaktie>(), 25) {
+		this.transakties = transakties;
+		transaktielijst = newTransactieListview("transakties");
+		add(new PagingNavigator("pager", transaktielijst));
+		add(transaktielijst);
+	}
+
+	private PageableListView<Transaktie> newTransactieListview(String id) {
+		return new PageableListView<Transaktie>(id, transakties, 25) {
 			private static final long serialVersionUID = 1L;
 			protected void populateItem(ListItem<Transaktie> item) {
                 final Transaktie transaktie = item.getModelObject();
@@ -41,12 +52,10 @@ public class TransaktielijstPanel extends Panel {
                 item.add(taglist);
             }
 		};
-		add(new PagingNavigator("pager", transaktielijst));
-		add(transaktielijst);
 	}
 	
-	public PageableListView<Transaktie> getTransaktielijst() {
-		return transaktielijst;
-	}
+//	public PageableListView<Transaktie> getTransaktielijst() {
+//		return transaktielijst;
+//	}
 
 }

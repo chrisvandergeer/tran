@@ -7,22 +7,27 @@ import nl.cge.tran.service.TotalCalculator;
 import nl.cge.tran.web.wicket.labels.Currencylabel;
 
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 
 public class TotalenPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 	
-	private TotalCalculator totalen = new TotalCalculator();
+	private TotalCalculator totalen;
 
-	public TotalenPanel(String id) {
+	public TotalenPanel(String id, IModel<List<? extends Transaktie>> transakties) {
 		super(id);
+		totalen = new TotalCalculator(transakties);
+		add(new MaandgrafiekPanel("maandgrafiek", transakties));
 		add(new Currencylabel("totaal", new PropertyModel<TotalCalculator>(totalen, "totaal")));
 		add(new Currencylabel("totaalPositief", new PropertyModel<TotalCalculator>(totalen, "totaalPositief")));
 		add(new Currencylabel("totaalNegatief", new PropertyModel<TotalCalculator>(totalen, "totaalNegatief")));
 	}
-
-	public void reCalculate(List<Transaktie> transakties) {
-		totalen.reCalculate(transakties);
+	
+	@Override
+	protected void onBeforeRender() {
+		totalen.reCalculate();
+		super.onBeforeRender();
 	}
 
 }

@@ -1,12 +1,18 @@
-<!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
 <wicket:panel>
-
    	<div class="row">
-    	<div class="span2 alert alert-info" wicket:id="totaal" />
-       	<div class="span2 alert alert-success" wicket:id="totaalPositief" />
-       	<div class="span2 alert alert-error" wicket:id="totaalNegatief" />
+   		<div class="span10" wicket:id="maandgrafiek"></div>
+       	<div class="span2">
+       		<label>
+       			<span class="label label-info" wicket:id="totaal"></span>
+       		</label>
+       		<label>
+       			<span class="label label-success" wicket:id="totaalPositief"></span>
+       		</label>
+       		<label>
+       			<span class="label label-important" wicket:id="totaalNegatief"></span>
+       		</label>
+       	</div>
 	</div>
-			
 </wicket:panel>
 </html>
