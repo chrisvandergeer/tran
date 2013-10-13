@@ -1,7 +1,10 @@
 package nl.cge.tran.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import nl.cge.tran.domein.DatumaflopendComparator;
 import nl.cge.tran.domein.Transaktie;
@@ -29,6 +32,7 @@ public enum TransaktieService {
 	}
 	
 	public List<Transaktie> findTransakties(SearchCriteria criteria) {
+		Collections.sort(cached, new DatumaflopendComparator());
 		List<Transaktie> result = new ArrayList<Transaktie>();
 		if (!criteria.hasText()) {
 			result.addAll(cached);
@@ -67,5 +71,21 @@ public enum TransaktieService {
 			}
 		}
 		dao.commit();
+	}
+
+	public Set<Transaktie> createHashTable() {
+		return new HashSet<Transaktie>(cached);		
+	}
+
+	public void insert(List<Transaktie> transaktiesToInsert) {
+		dao.save(transaktiesToInsert);
+		dao.commit();
+		cached = findAll();		
+	}
+	
+	public int deleteAll() {
+		dao.deleteAll();
+		cached = findAll();
+		return cached.size();
 	}
 }

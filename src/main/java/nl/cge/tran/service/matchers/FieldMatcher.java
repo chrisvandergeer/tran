@@ -15,11 +15,11 @@ public class FieldMatcher implements Matcher {
 
 	@Override
 	public boolean isMatch(Transaktie transaktie) {
-		StringBuilder builder = new StringBuilder(transaktie.getTegenrekeningnaam())
-			.append(transaktie.getOmschrijving1()).append(transaktie.getOmschrijving2())
-			.append(transaktie.getOmschrijving3()).append(transaktie.getOmschrijving4());
-        String concat = builder.toString().toUpperCase();
-        return concat.contains(search.toUpperCase());
+//		StringBuilder builder = new StringBuilder(transaktie.getTegenrekeningnaam())
+//			.append(transaktie.getOmschrijving1()).append(transaktie.getOmschrijving2())
+//			.append(transaktie.getOmschrijving3()).append(transaktie.getOmschrijving4());
+//        String concat = builder.toString().toUpperCase();
+        return transaktie.getTextfields().toUpperCase().contains(search.toUpperCase());
 	}
 
 	@Override

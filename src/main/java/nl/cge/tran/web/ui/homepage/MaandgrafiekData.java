@@ -40,6 +40,14 @@ public class MaandgrafiekData implements Serializable {
 				negatiefTotaal.get(key).addAmount(t.getBedrag() * -1);
 			}
 		}
+		if (positiefTotaal.size() > 12) {
+			int aantalTeVerwijderen = positiefTotaal.size() - 12;
+			String[] keys = positiefTotaal.keySet().toArray(new String[0]);
+			for (int i = 0; i < aantalTeVerwijderen; i++) {
+				positiefTotaal.remove(keys[i]);
+				negatiefTotaal.remove(keys[i]);
+			}
+		}
 	}
 
 	public Map<String, Money> getNegatiefTotaal() {

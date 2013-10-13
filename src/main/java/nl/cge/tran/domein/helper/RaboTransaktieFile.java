@@ -3,6 +3,7 @@ package nl.cge.tran.domein.helper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,12 @@ public class RaboTransaktieFile {
 	public static RaboTransaktieFile newInstance(BufferedReader reader) {
 		RaboTransaktieFile raboTransaktieFile = new RaboTransaktieFile();
 		raboTransaktieFile.reader = reader;
+		return raboTransaktieFile;
+	}
+	
+	public static RaboTransaktieFile newInstance(String file) {
+		RaboTransaktieFile raboTransaktieFile = new RaboTransaktieFile();
+		raboTransaktieFile.reader = new BufferedReader(new StringReader(file));
 		return raboTransaktieFile;
 	}
 

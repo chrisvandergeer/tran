@@ -67,5 +67,11 @@ public enum TransaktieDao {
 			save(t);
 		}
 	}
+	
+	public void deleteAll() {
+		treeMap.clear();
+		commit();
+	}
+	
 
 }

@@ -39,7 +39,7 @@ public class MaandgrafiekPanel extends Panel {
 			public void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
 				grafiekData.calculateChartdata();
 				Response response = getRequestCycle().getResponse();
-				StringBuilder builder = new StringBuilder("<canvas id=\"canvas\"></canvas>");
+				StringBuilder builder = new StringBuilder();
 				builder.append("<script>");
 				builder.append("var barChartData = {");
 				builder.append(getChartLabels());

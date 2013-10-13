@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-	<body>
-	
-		<div class="hero-unit" style="padding: 30px;">
-			<h1>Transakties</h1>
+<body>
+	<wicket:extend>
+		<div class="container">
+			<div class="row">
+				<div class="span8" wicket:id="search"></div>
+				<div wicket:id="tagformpanel" class="span4" style="float: right"></div>
+			</div>
 		</div>
-		
-        <div class="container">
-        	<div class="row">
-        		<div class="span8" wicket:id="search"></div>       
-	        	<div wicket:id="tagformpanel" class="span4" style="float: right"></div>
-        	</div>           
-        </div>
-        
-		<div class="container" wicket:id="maandChart"></div> 
-		
+		<div class="container" wicket:id="maandChart"></div>
 		<div class="container" wicket:id="transactiepanel"></div>
-		
-	</body>
+	</wicket:extend>
+</body>
 </html>

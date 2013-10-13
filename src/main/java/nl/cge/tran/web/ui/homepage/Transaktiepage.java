@@ -47,10 +47,10 @@ public class Transaktiepage extends BootstrapPage {
 		return tagformPanel;
 	}
 
-	private TotalenPanel totalenPanel(String id) {
-		totalenPanel = new TotalenPanel(id, transakties);
-		return totalenPanel;
-	}
+//	private TotalenPanel totalenPanel(String id) {
+//		totalenPanel = new TotalenPanel(id, transakties);
+//		return totalenPanel;
+//	}
 
 	private TransaktielijstPanel newTransaktielijstPanel(String id) {
 		transaktielijstPanel = new TransaktielijstPanel(id, transakties);

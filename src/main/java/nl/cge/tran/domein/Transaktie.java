@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import nl.cge.tran.web.ui.homepage.SearchCriteria;
+import org.joda.time.LocalDate;
 
 public class Transaktie implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -103,36 +103,6 @@ public class Transaktie implements Serializable {
 		return result.endsWith(", ") ? result.substring(0, result.length() - 2) : "";
 	}
 	
-	public boolean isMatch(SearchCriteria crit) {
-        if (crit.hasText()) {
-            StringBuilder builder = new StringBuilder(getTegenrekeningnaam()).append(getOmschrijving1());
-            builder.append(getOmschrijving2()).append(getOmschrijving3()).append(getOmschrijving4());
-            String concat = builder.toString().toUpperCase();        
-            
-            
-            for (String str : crit.getText().split(" ")) {           	
-            	if (str.startsWith("l:")) {
-            		if (!getTags().contains(str.replace("l:", ""))) {
-            			return false;
-            		}
-            	} else if (str.startsWith(">")) {
-            		Integer meerDan = Integer.valueOf(str.replace(">", ""));
-            		return bedrag > meerDan;
-            	} else if (str.startsWith("<")) {
-            		Integer minderDan = Integer.valueOf(str.replace("<", ""));
-            		System.out.println(minderDan);
-            		return bedrag < minderDan;
-            	} else {
-            		if (!concat.contains(str.toUpperCase())) {
-            			return false;
-            		}
-            	}
-            }
-            return true;
-        }
-        return true;
-    }
-	
 	public void addTag(String tag) {
 		getTags().add(tag);
 	}
@@ -140,4 +110,31 @@ public class Transaktie implements Serializable {
 	public void removeTag(String tag) {
 		getTags().remove(tag);
 	}
+	
+	public String getTextfields() {
+		StringBuilder builder = new StringBuilder(getTegenrekeningnaam())
+		.append(getOmschrijving1()).append(getOmschrijving2())
+		.append(getOmschrijving3()).append(getOmschrijving4());
+		return builder.toString();		
+	}
+	
+	public String getKeyfields() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(new LocalDate(datum).toString());
+		builder.append(bedrag);
+		builder.append(tegenrekening);
+		builder.append(omschrijving1);
+		return builder.toString();
+	}
+	
+	@Override
+	public int hashCode() {
+		return new LocalDate(datum).hashCode();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		Transaktie other = (Transaktie) obj;
+		return new LocalDate(datum).equals(new LocalDate(other.datum)) &&
+				getKeyfields().equals(other.getKeyfields());
+	}	
 }
