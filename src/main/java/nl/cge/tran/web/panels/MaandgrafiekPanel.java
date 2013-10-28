@@ -1,4 +1,4 @@
-package nl.cge.tran.web.ui.homepage;
+package nl.cge.tran.web.panels;
 
 import java.util.List;
 import java.util.Map;
@@ -53,7 +53,8 @@ public class MaandgrafiekPanel extends Panel {
 					builder.append(getValuesNegatief());	
 				}
 				builder.append("] };");
-				builder.append("var myLine = new Chart(document.getElementById(\"canvas\").getContext(\"2d\")).Bar(barChartData);");
+				builder.append("var options = {  };");
+				builder.append("var myLine = new Chart(document.getElementById(\"canvas\").getContext(\"2d\")).Bar(barChartData, options);");
 				builder.append("</script>");
 				response.write(builder.toString());
 			}

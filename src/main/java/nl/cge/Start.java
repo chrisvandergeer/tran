@@ -1,5 +1,8 @@
 package nl.cge;
 
+import java.awt.Desktop;
+import java.net.URI;
+
 import org.apache.wicket.util.time.Duration;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.bio.SocketConnector;
@@ -64,6 +67,9 @@ public class Start {
         try {
             System.out.println(">>> STARTING EMBEDDED JETTY SERVER, PRESS ANY KEY TO STOP");
             server.start();
+            if (Desktop.isDesktopSupported()) {
+            	Desktop.getDesktop().browse(new URI("http://localhost:8080"));
+            }
             System.in.read();
             System.out.println(">>> STOPPING EMBEDDED JETTY SERVER");
             server.stop();
@@ -72,5 +78,7 @@ public class Start {
             e.printStackTrace();
             System.exit(1);
         }
+        
+
     }
 }

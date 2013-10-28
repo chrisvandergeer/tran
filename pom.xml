@@ -23,16 +23,10 @@
 	<groupId>nl.cge</groupId>
 	<artifactId>tran</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
-		<!-- TODO project name  -->
-	<name>quickstart</name>
+	<version>1.0</version>
+	<name>tran</name>
 	<description></description>
-	<!--
-		<organization>
-			<name>company name</name>
-			<url>company url</url>
-		</organization>
-	-->
+
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
@@ -46,6 +40,15 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>jdbm</groupId>
+			<artifactId>jdbm</artifactId>
+			<version>0.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/jdbm-2.4.jar</systemPath>
+		</dependency>
+		
 		<!--  WICKET DEPENDENCIES -->
 		<dependency>
 			<groupId>org.apache.wicket</groupId>

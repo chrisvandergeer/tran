@@ -59,6 +59,7 @@ public class ImportPage extends BootstrapPage {
 					service.insert(transaktiesToInsert);
 					bestaandLabel.setDefaultModelObject(aantalOud);
 					nieuwLabel.setDefaultModelObject(aantalNieuw);
+					service.clearCache();
 				}
 			}
 		};
