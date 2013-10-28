@@ -1,4 +1,4 @@
-package nl.cge.tran.web.ui.homepage;
+package nl.cge.tran.web.panels;
 
 import java.io.Serializable;
 import java.util.List;
@@ -28,8 +28,8 @@ public class MaandgrafiekData implements Serializable {
 		negatiefTotaal = new TreeMap<String, Money>();
 		positiefTotaal = new TreeMap<String, Money>();
 		for (Transaktie t : transakties.getObject()) {
-			LocalDate date = new LocalDate(t.getDatum());
-			String key = date.getYear() + "-" + date.getMonthOfYear();
+			LocalDate date = new LocalDate(t.getDatum());			
+			String key = date.getYear() + "-" + String.format("%02d", date.getMonthOfYear());
 			if (!negatiefTotaal.containsKey(key)) {
 				negatiefTotaal.put(key, Money.create());
 				positiefTotaal.put(key, Money.create());

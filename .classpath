@@ -24,5 +24,7 @@
 	<classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/orbit/javax.activation/1.1.0.v201105071233/javax.activation-1.1.0.v201105071233.jar" sourcepath="M2_REPO/org/eclipse/jetty/orbit/javax.activation/1.1.0.v201105071233/javax.activation-1.1.0.v201105071233-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/orbit/javax.annotation/1.1.0.v201108011116/javax.annotation-1.1.0.v201108011116.jar" sourcepath="M2_REPO/org/eclipse/jetty/orbit/javax.annotation/1.1.0.v201108011116/javax.annotation-1.1.0.v201108011116-sources.jar"/>
 	<classpathentry kind="lib" path="jdbm-2.4.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

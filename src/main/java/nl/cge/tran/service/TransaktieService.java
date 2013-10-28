@@ -27,8 +27,17 @@ public enum TransaktieService {
 		cached = dao.findAll();		
 	}
 	
-	public List<Transaktie> findAll() {
+	private List<Transaktie> getCached() {
+		if (cached == null) {
+			List<Transaktie> findAll = dao.findAll();
+			cached = findAll;
+			return findAll;
+		}
 		return cached;
+	}
+	
+	public List<Transaktie> findAll() {
+		return getCached();
 	}
 	
 	public List<Transaktie> findTransakties(SearchCriteria criteria) {
@@ -80,12 +89,16 @@ public enum TransaktieService {
 	public void insert(List<Transaktie> transaktiesToInsert) {
 		dao.save(transaktiesToInsert);
 		dao.commit();
-		cached = findAll();		
+		cached = null;
 	}
 	
 	public int deleteAll() {
 		dao.deleteAll();
 		cached = findAll();
 		return cached.size();
+	}
+
+	public void clearCache() {
+		cached = findAll();
 	}
 }

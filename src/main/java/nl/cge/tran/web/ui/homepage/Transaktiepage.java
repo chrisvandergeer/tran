@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.cge.tran.domein.Transaktie;
+import nl.cge.tran.web.panels.MaandgrafiekPanel;
 import nl.cge.tran.web.wicket.ui.BootstrapPage;
 
 import org.apache.wicket.model.IModel;
