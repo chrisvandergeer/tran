@@ -9,6 +9,7 @@ import java.util.Set;
 import nl.cge.tran.domein.DatumaflopendComparator;
 import nl.cge.tran.domein.Transaktie;
 import nl.cge.tran.persistence.TransaktieDao;
+import nl.cge.tran.persistence.TransaktieDaoMapdbImpl;
 import nl.cge.tran.service.matchers.Matcher;
 import nl.cge.tran.service.matchers.MatcherFactory;
 import nl.cge.tran.web.ui.homepage.SearchCriteria;
@@ -19,7 +20,7 @@ public enum TransaktieService {
 	
 	private DatumaflopendComparator datumaflopendComparator = new DatumaflopendComparator();
 	
-	private TransaktieDao dao = TransaktieDao.Instance;
+	private TransaktieDao dao = TransaktieDaoMapdbImpl.instance();
 	
 	private List<Transaktie> cached;
 	{
