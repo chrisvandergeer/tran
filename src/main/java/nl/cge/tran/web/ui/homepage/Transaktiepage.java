@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.cge.tran.domein.Transaktie;
+import nl.cge.tran.web.panels.MaandTotaalData;
 import nl.cge.tran.web.panels.MaandgrafiekPanel;
 import nl.cge.tran.web.wicket.ui.BootstrapPage;
 
@@ -20,13 +21,11 @@ public class Transaktiepage extends BootstrapPage {
 	private TransaktielijstPanel transaktielijstPanel;
 	private SearchformPanel searchformPanel;
 	private TagformPanel tagformPanel;
-	private TotalenPanel totalenPanel;
 	
 	/**
 	 * Model of List<Transaktie>.
 	 */
 	private IModel<List<? extends Transaktie>> transakties;
-
 	
 	/**
 	 * Constructor.
@@ -36,22 +35,17 @@ public class Transaktiepage extends BootstrapPage {
 	public Transaktiepage(PageParameters parameters) {
 		super(parameters);
 		transakties = Model.ofList(new ArrayList<Transaktie>());
+		MaandTotaalData maandTotaalData = new MaandTotaalData(transakties);
 		add(newSearchformPanel("search"));
 		add(newTransaktielijstPanel("transactiepanel"));
 		add(newTagformPanel("tagformpanel"));
-//		add(totalenPanel("totalen"));
-		add(new MaandgrafiekPanel("maandChart", transakties));
+		add(new MaandgrafiekPanel("maandChart", maandTotaalData));
 	}
 
 	private TagformPanel newTagformPanel(String id) {
 		tagformPanel = new TagformPanel(id, transakties);
 		return tagformPanel;
 	}
-
-//	private TotalenPanel totalenPanel(String id) {
-//		totalenPanel = new TotalenPanel(id, transakties);
-//		return totalenPanel;
-//	}
 
 	private TransaktielijstPanel newTransaktielijstPanel(String id) {
 		transaktielijstPanel = new TransaktielijstPanel(id, transakties);

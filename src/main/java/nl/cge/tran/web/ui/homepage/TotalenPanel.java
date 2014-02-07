@@ -19,7 +19,7 @@ public class TotalenPanel extends Panel {
 	public TotalenPanel(String id, IModel<List<? extends Transaktie>> transakties) {
 		super(id);
 		totalen = new TotalCalculator(transakties);
-		add(new MaandgrafiekPanel("maandgrafiek", transakties));
+//		add(new MaandgrafiekPanel("maandgrafiek", transakties));
 		add(new Currencylabel("totaal", new PropertyModel<TotalCalculator>(totalen, "totaal")));
 		add(new Currencylabel("totaalPositief", new PropertyModel<TotalCalculator>(totalen, "totaalPositief")));
 		add(new Currencylabel("totaalNegatief", new PropertyModel<TotalCalculator>(totalen, "totaalNegatief")));

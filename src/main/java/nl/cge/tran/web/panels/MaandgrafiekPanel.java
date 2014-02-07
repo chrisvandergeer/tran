@@ -1,35 +1,29 @@
 package nl.cge.tran.web.panels;
 
-import java.util.List;
 import java.util.Map;
 
 import nl.cge.tran.domein.Money;
-import nl.cge.tran.domein.Transaktie;
 
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.Response;
 
 public class MaandgrafiekPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 	
-	private MaandgrafiekData grafiekData;
+	private MaandTotaalData grafiekData;
 
-	private IModel<List<? extends Transaktie>> transakties;	
-
-	public MaandgrafiekPanel(String id, IModel<List<? extends Transaktie>> transakties) {
+	public MaandgrafiekPanel(String id, MaandTotaalData data) {
 		super(id);
-		this.transakties = transakties;
-		grafiekData = new MaandgrafiekData(transakties);
+		grafiekData = data;
 		add(newGrafiekdataContainer("chartdata"));
 	}
 	
 	@Override
 	public boolean isVisible() {
-		return transakties.getObject().size() > 0;
+		return grafiekData.hasData();
 	}
 
 	private WebMarkupContainer newGrafiekdataContainer(String id) {
@@ -37,7 +31,7 @@ public class MaandgrafiekPanel extends Panel {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
-				grafiekData.calculateChartdata();
+				grafiekData.calculate();
 				Response response = getRequestCycle().getResponse();
 				StringBuilder builder = new StringBuilder();
 				builder.append("<script>");
@@ -97,7 +91,7 @@ public class MaandgrafiekPanel extends Panel {
 	
 	@Override
 	protected void onBeforeRender() {
-		grafiekData.calculateChartdata();
+		grafiekData.calculate();
 		Map<String, Money> data = grafiekData.getNegatiefTotaal();
 		for (String maand : data.keySet()) {
 			System.out.println(maand + " - " + data.get(maand).doubleValue());
