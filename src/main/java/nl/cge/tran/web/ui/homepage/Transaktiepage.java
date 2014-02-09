@@ -39,7 +39,7 @@ public class Transaktiepage extends BootstrapPage {
 		add(newSearchformPanel("search"));
 		add(newTransaktielijstPanel("transactiepanel"));
 		add(newTagformPanel("tagformpanel"));
-		add(new MaandgrafiekPanel("maandChart", maandTotaalData));
+		add(new MaandgrafiekPanel("maandChart", transakties));
 	}
 
 	private TagformPanel newTagformPanel(String id) {

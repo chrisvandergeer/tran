@@ -1,13 +1,16 @@
 package nl.cge.tran.web.panels;
 
+import java.util.List;
 import java.util.Map;
 
 import nl.cge.tran.domein.Money;
+import nl.cge.tran.domein.Transaktie;
 
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.Response;
 
 public class MaandgrafiekPanel extends Panel {
@@ -15,9 +18,12 @@ public class MaandgrafiekPanel extends Panel {
 	
 	private MaandTotaalData grafiekData;
 
-	public MaandgrafiekPanel(String id, MaandTotaalData data) {
+	private IModel<List<? extends Transaktie>> transakties;
+
+	public MaandgrafiekPanel(String id, IModel<List<? extends Transaktie>> transakties) {
 		super(id);
-		grafiekData = data;
+		this.transakties = transakties;
+		grafiekData = new MaandTotaalData(transakties);
 		add(newGrafiekdataContainer("chartdata"));
 	}
 	
@@ -91,11 +97,9 @@ public class MaandgrafiekPanel extends Panel {
 	
 	@Override
 	protected void onBeforeRender() {
+		grafiekData = new MaandTotaalData(transakties);
 		grafiekData.calculate();
 		Map<String, Money> data = grafiekData.getNegatiefTotaal();
-		for (String maand : data.keySet()) {
-			System.out.println(maand + " - " + data.get(maand).doubleValue());
-		}
 		super.onBeforeRender();
 	}
 
