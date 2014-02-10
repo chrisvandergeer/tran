@@ -1,9 +1,11 @@
 package nl.cge.tran.web.panels;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import nl.cge.tran.domein.Money;
@@ -53,6 +55,35 @@ public class MaandTotaalData implements Serializable {
 	
 	public Map<String, Money> getPositiefTotaal() {
 		return positiefTotaal;
+	}
+	
+	public List<String> getMaanden() {
+		Set<String> set = getNegatiefTotaal().size() > 0 ? getNegatiefTotaal().keySet() : getPositiefTotaal().keySet();
+		return new ArrayList<String>(set);
+	}
+	
+	public List<Double> getTotalen() {
+		List<Double> totalen = new ArrayList<Double>();
+		for (String maand : getMaanden()) {
+			totalen.add(positiefTotaal.get(maand).doubleValue() - negatiefTotaal.get(maand).doubleValue());
+		}
+		return totalen;
+	}
+
+	public List<Double> getTotalenPositief() {
+		List<Double> totalen = new ArrayList<Double>();
+		for (String maand : getMaanden()) {
+			totalen.add(positiefTotaal.get(maand).doubleValue());
+		}
+		return totalen;
+	}
+	
+	public List<Double> getTotalenNegatief() {
+		List<Double> totalen = new ArrayList<Double>();
+		for (String maand : getMaanden()) {
+			totalen.add(negatiefTotaal.get(maand).doubleValue());
+		}
+		return totalen;
 	}
 
 	public boolean hasValuesPositief() {

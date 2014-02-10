@@ -6,6 +6,7 @@ import java.util.List;
 import nl.cge.tran.domein.Transaktie;
 import nl.cge.tran.web.panels.MaandTotaalData;
 import nl.cge.tran.web.panels.MaandgrafiekPanel;
+import nl.cge.tran.web.panels.TotaaltabelPanel;
 import nl.cge.tran.web.wicket.ui.BootstrapPage;
 
 import org.apache.wicket.model.IModel;
@@ -37,6 +38,7 @@ public class Transaktiepage extends BootstrapPage {
 		transakties = Model.ofList(new ArrayList<Transaktie>());
 		MaandTotaalData maandTotaalData = new MaandTotaalData(transakties);
 		add(newSearchformPanel("search"));
+		add(new TotaaltabelPanel("totaalTabel", transakties));
 		add(newTransaktielijstPanel("transactiepanel"));
 		add(newTagformPanel("tagformpanel"));
 		add(new MaandgrafiekPanel("maandChart", transakties));

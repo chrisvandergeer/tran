@@ -4,7 +4,6 @@ import java.util.List;
 
 import nl.cge.tran.domein.Transaktie;
 import nl.cge.tran.service.TotalCalculator;
-import nl.cge.tran.web.panels.MaandgrafiekPanel;
 import nl.cge.tran.web.wicket.labels.Currencylabel;
 
 import org.apache.wicket.markup.html.panel.Panel;
