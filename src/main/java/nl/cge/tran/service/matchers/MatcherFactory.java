@@ -12,8 +12,8 @@ public class MatcherFactory {
 	private static Logger LOGGER = Logger.getLogger(MatcherFactory.class);
 	
 	public static Matcher[] MATCHERS = new Matcher[] {
-		new LabelMatcher(), new BedragGroterDanMatcher(), new BedragKleinerDanMatcher(), 
-		new MaandMatcher(),	new JaarMatcher(), new FieldMatcher() 
+		new NoLabelMatcher(), new LabelMatcher(), new BedragGroterDanMatcher(),
+		new BedragKleinerDanMatcher(), new MaandMatcher(),	new JaarMatcher(), new FieldMatcher()
 	};
 	
 	public static List<Matcher> create(SearchCriteria criteria) {
