@@ -2,6 +2,7 @@ package nl.cge.tran.web.wicket.ui;
 
 import nl.cge.tran.web.ui.homepage.Transaktiepage;
 import nl.cge.tran.web.ui.importpage.ImportPage;
+import nl.cge.tran.web.ui.tagpage.TagPage;
 
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
@@ -17,6 +18,7 @@ public class BootstrapPage extends WebPage {
 		super(parameters);
 		add(new BookmarkablePageLink<WebPage>("transactiesPagina", Transaktiepage.class));
 		add(new BookmarkablePageLink<WebPage>("importPagina", ImportPage.class));
+		add(new BookmarkablePageLink<WebPage>("tagPagina", TagPage.class));
 	}
 
     @Override

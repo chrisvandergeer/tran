@@ -29,7 +29,6 @@ public class TransaktieDaoMapdbImpl implements TransaktieDao {
 	@Override
 	public void close() {
 		db.close();
-
 	}
 
 	@Override
