@@ -3,6 +3,20 @@
 <body>
 	<wicket:extend>
 		<h1>Tag page</h1>
+		<table class="table">
+			<tr>
+				<th>Query</th>
+				<th>Tag</th>
+				<th>Creatiedatum</th>
+				<th>Datum laatst gebruikt</th>
+			</tr>
+			<tr wicket:id="taggedQueries">
+				<td wicket:id="query" />
+				<td wicket:id="tag" />
+				<td wicket:id="creatiedatum" />
+				<td wicket:id="laatstGebruiktdatum" />
+			</tr>
+		</table>
 	</wicket:extend>
 </body>
 </html>

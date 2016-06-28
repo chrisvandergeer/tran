@@ -2,6 +2,7 @@ package nl.cge.tran.web.ui.homepage;
 
 import java.util.List;
 
+import nl.cge.tran.domein.TaggedQuery;
 import nl.cge.tran.domein.Transaktie;
 import nl.cge.tran.service.TransaktieService;
 
@@ -33,7 +34,8 @@ public class TagformPanel extends Panel {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
-				TransaktieService.Instance.saveAll(transakties.getObject(), tag.getModelObject());
+				TaggedQuery taggedQuery = TaggedQuery.create("myquery", tag.getModelObject());
+				TransaktieService.Instance.addTag(transakties.getObject(), taggedQuery);
 			}
 		};
 	}

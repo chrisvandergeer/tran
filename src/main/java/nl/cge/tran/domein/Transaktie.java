@@ -1,17 +1,14 @@
 package nl.cge.tran.domein;
 
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.joda.time.LocalDate;
 
-public class Transaktie implements Serializable {
+public class Transaktie extends Entity {
 	private static final long serialVersionUID = 1L;
-	
-	private Integer id;
 	
 	private String rekeningnummer;
 	private Date datum;
@@ -24,12 +21,6 @@ public class Transaktie implements Serializable {
 	private String omschrijving4;
 	private Set<String> tags;
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public String getRekeningnummer() {
 		return rekeningnummer;
 	}

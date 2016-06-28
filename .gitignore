@@ -3,5 +3,4 @@ transakties.mapdb.t
 /.classpath
 /.project
 /.settings
-/transakties.mapdb
-/transakties.mapdb.p
+/*.mapdb*

@@ -1,25 +1,18 @@
 package nl.cge.tran.persistence;
 
-import java.util.List;
-
 import nl.cge.tran.domein.Transaktie;
 
-public interface TransaktieDao {
+public class TransaktieDao extends EntityDao<Transaktie> {
 
-	public abstract void init();
-
-	public abstract void close();
-
-	public abstract void save(Transaktie transaktie);
-
-	public abstract void commit();
-
-	public abstract Transaktie read(Integer id);
-
-	public abstract List<Transaktie> findAll();
-
-	public abstract void save(List<Transaktie> transakties);
-
-	public abstract void deleteAll();
+	public static EntityDao<Transaktie> instance() {
+		return new TransaktieDao();
+	}
+	
+	@Override
+	protected String getDatabaseFilename() {
+		return "transacties";
+	}
+	
+	
 
 }
