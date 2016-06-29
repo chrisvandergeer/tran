@@ -2,21 +2,26 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <body>
 	<wicket:extend>
-		<h1>Tag page</h1>
-		<table class="table">
-			<tr>
-				<th>Query</th>
-				<th>Tag</th>
-				<th>Creatiedatum</th>
-				<th>Datum laatst gebruikt</th>
-			</tr>
-			<tr wicket:id="taggedQueries">
-				<td wicket:id="query" />
-				<td wicket:id="tag" />
-				<td wicket:id="creatiedatum" />
-				<td wicket:id="laatstGebruiktdatum" />
-			</tr>
-		</table>
+		<div class="container">
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th>Query</th>
+					<th>Tag</th>
+					<th>Creatiedatum</th>
+					<th>Datum laatst gebruikt</th>
+					<th>Acties</th>
+				</tr>
+				<tr wicket:id="taggedQueries">
+					<td wicket:id="query" />
+					<td wicket:id="tag" />
+					<td wicket:id="creatiedatum" />
+					<td wicket:id="laatstGebruiktdatum" />
+					<td>
+						<button wicket:id="verwijder" type="button" class="btn btn-primary btn-xs">verwijder</button>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</wicket:extend>
 </body>
 </html>

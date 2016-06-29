@@ -10,6 +10,7 @@ import org.mapdb.DB;
 import org.mapdb.DBMaker;
 
 import nl.cge.tran.domein.Entity;
+import nl.cge.tran.domein.TaggedQuery;
 
 public abstract class EntityDao<E extends Entity>  {
 	
@@ -61,6 +62,11 @@ public abstract class EntityDao<E extends Entity>  {
 		commit();
 	}
 	
+	public ConcurrentNavigableMap<Integer, E> getMap() {
+		return map;
+	}
+	
 	protected abstract String getDatabaseFilename();
+
 
 }

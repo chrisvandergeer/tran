@@ -22,7 +22,7 @@ public enum TransaktieService {
 	Instance;
 	
 	private EntityDao<Transaktie> transaktieDao = TransaktieDao.instance();
-	private EntityDao<TaggedQuery> taggedQueryDao = TaggedQueryDao.instance();	
+	private TaggedQueryDao taggedQueryDao = TaggedQueryDao.instance();	
 	
 	private List<Transaktie> cached;
 	{
@@ -134,5 +134,10 @@ public enum TransaktieService {
 	
 	public List<TaggedQuery> findAllTaggedQueries() {
 		return taggedQueryDao.findAll();
+	}
+
+	public void verwijder(TaggedQuery modelObject) {
+		taggedQueryDao.delete(modelObject);
+		taggedQueryDao.commit();
 	}
 }
