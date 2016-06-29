@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentNavigableMap;
 
+import org.apache.log4j.Logger;
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
 
@@ -14,10 +15,14 @@ public abstract class EntityDao<E extends Entity>  {
 	
 	private DB db;
 	private ConcurrentNavigableMap<Integer,E> map;
+	
+	private Logger logger = Logger.getLogger(getClass());
 
 	public void init() {
 		String databaseFilename = getDatabaseFilename();
-		db = DBMaker.newFileDB(new File(databaseFilename + ".mapdb")).make();
+		File dbFile = new File(databaseFilename + ".mapdb");
+		logger.info(String.format("dbFile = %s", dbFile.getAbsolutePath()));
+		db = DBMaker.newFileDB(dbFile).make();
 		map = db.getTreeMap(databaseFilename);
 	}
 	

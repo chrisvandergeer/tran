@@ -44,8 +44,8 @@ public class SearchformPanel extends Panel {
 		};
 		return form;
 	}
-//
-//	public IModel<SearchCriteria> getSearchCriteriaModel() {
-//		return model;
-//	}
+
+	public IModel<SearchCriteria> getSearchCriteriaModel() {
+		return model;
+	}
 }

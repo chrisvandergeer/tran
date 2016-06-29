@@ -59,4 +59,8 @@ public class Transaktiepage extends BootstrapPage {
 		return searchformPanel;
 	}
 	
+	public IModel<SearchCriteria> getSearchCriteria() {
+		return searchformPanel.getSearchCriteriaModel();
+	}
+	
 }

@@ -34,7 +34,8 @@ public class TagformPanel extends Panel {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
-				TaggedQuery taggedQuery = TaggedQuery.create("myquery", tag.getModelObject());
+				SearchCriteria searchCriteria = ((Transaktiepage) getPage()).getSearchCriteria().getObject();
+				TaggedQuery taggedQuery = TaggedQuery.create(searchCriteria.getText(), tag.getModelObject());
 				TransaktieService.Instance.addTag(transakties.getObject(), taggedQuery);
 			}
 		};
